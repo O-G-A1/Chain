@@ -570,3 +570,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMostRead(mostRead);
   setupSearch();
 });
+
+console.log(response.status);
+console.log(response.ok);
