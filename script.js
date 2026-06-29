@@ -458,7 +458,7 @@ async function submitEmail() {
     return;
   }
 
-  await fetch("https://submit-form.com/ZPxVAw9Fm", {
+  await fetch("https://submit-form.com/ZPxVAw9Fmg", {
     method: "POST",
 
     headers: {
