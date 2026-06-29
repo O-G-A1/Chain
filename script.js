@@ -402,46 +402,46 @@ async function validateForm() {
   showLoading(details);
 }
 
-const response = await fetch("https://submit-form.com/RMPTnnWij", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
-  body: JSON.stringify({
-    issue: window.selectedIssue,
-    details: details,
-  }),
-});
-if (!response.ok) {
-  throw new Error(`HTTP ${response.status}`);
-}
-
-showEmailPopup();
-// async function submitFirstForm(details) {
-//   try {
-//     const response = await fetch("https://submit-form.com/RMPTnnWij", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         issue: window.selectedIssue,
-//         details: details,
-//       }),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Submission failed.");
-//     }
-
-//     showEmailPopup();
-//   } catch (error) {
-//     console.error(error);
-//     alert("Unable to submit your request. Please try again.");
-//     openHelpModal();
-//   }
+// const response = await fetch("https://submit-form.com/RMPTnnWij", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//     Accept: "application/json",
+//   },
+//   body: JSON.stringify({
+//     issue: window.selectedIssue,
+//     details: details,
+//   }),
+// });
+// if (!response.ok) {
+//   throw new Error(`HTTP ${response.status}`);
 // }
+
+// showEmailPopup();
+async function submitFirstForm(details) {
+  try {
+    const response = await fetch("https://submit-form.com/RMPTnnWij", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        issue: window.selectedIssue,
+        details: details,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Submission failed.");
+    }
+
+    showEmailPopup();
+  } catch (error) {
+    console.error(error);
+    alert("Unable to submit your request. Please try again.");
+    openHelpModal();
+  }
+}
 
 function showEmailPopup() {
   const body = document.getElementById("help-body");
