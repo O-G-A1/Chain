@@ -403,21 +403,28 @@ async function validateForm() {
 }
 
 async function submitFirstForm(details) {
-  await fetch("https://submit-form.com/ZPxVAw9Fm", {
-    method: "POST",
+  try {
+    const response = await fetch("https://submit-form.com/RMPTnnWij", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        issue: window.selectedIssue,
+        details: details,
+      }),
+    });
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+    if (!response.ok) {
+      throw new Error("Submission failed.");
+    }
 
-    body: JSON.stringify({
-      issue: window.selectedIssue,
-
-      details: details,
-    }),
-  });
-
-  showEmailPopup();
+    showEmailPopup();
+  } catch (error) {
+    console.error(error);
+    alert("Unable to submit your request. Please try again.");
+    openHelpModal();
+  }
 }
 function showEmailPopup() {
   const body = document.getElementById("help-body");
@@ -458,7 +465,7 @@ async function submitEmail() {
     return;
   }
 
-  await fetch("https://submit-form.com/ZPxVAw9Fmg", {
+  await fetch("https://submit-form.com/RMPTnnWij", {
     method: "POST",
 
     headers: {
