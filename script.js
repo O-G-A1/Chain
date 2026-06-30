@@ -1,21 +1,21 @@
 const collections = [
   {
-    title: "Crypto.com App",
+    title: "Onchainhub App",
     desc: "Detailed information about Crypto.com App, available markets, CRO lockup, Crypto deposits and withdrawals, referral program, and security",
     count: "114 articles",
   },
   {
-    title: "Crypto.com Exchange",
+    title: "Onchainhub Exchange",
     desc: "Registration, account management, trading, CRO lockup, fees, referral program and security",
     count: "150 articles",
   },
   {
-    title: "Crypto.com Prepaid Card",
+    title: "Onchainhub Prepaid Card",
     desc: "Everything to know about Crypto.com Prepaid Card - application, activation, usage and benefits",
     count: "49 articles",
   },
   {
-    title: "Crypto.com Cash Account",
+    title: "Onchainhub Cash Account",
     desc: "Set up, Deposits, Withdrawals, Bank Transfers, Account Management",
     count: "48 articles",
   },
@@ -30,7 +30,7 @@ const collections = [
     count: "7 articles",
   },
   {
-    title: "Crypto.com Onchain",
+    title: "Onchainhub",
     desc: "Onboarding, wallet management, deposit and withdrawal",
     count: "91 articles",
   },
@@ -62,7 +62,7 @@ const mostRead = [
   "Prepaid Card - Rewards & Benefits",
   "How to Set Up Your App 2FA?",
   "Cash Account - General Information",
-  "How to Update Your Phone Number in the Crypto.com App",
+  "How to Update Your Phone Number in the Onchain App",
   "Onchainhub Send",
 ];
 
@@ -80,7 +80,7 @@ const articlesDB = {
         <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">Always verify the network on both sending and receiving platforms before confirming.</p>
     `,
 
-  "Crypto.com Prepaid Card - Rewards & Benefits": `
+  "Prepaid Card - Rewards & Benefits": `
         <p>The Visa Card provides attractive rewards based on your stake level.</p>
         <ul class="list-disc pl-6 my-4 space-y-2">
             <li>Up to 8% CRO cashback on spending</li>
@@ -90,7 +90,7 @@ const articlesDB = {
         </ul>
     `,
 
-  "How to Set Up Your Crypto.com App 2FA?": `
+  "How to Set Up Your App 2FA?": `
         <p>Two-Factor Authentication (2FA) adds an extra layer of security to your account.</p>
         <ol class="list-decimal pl-6 my-4 space-y-3">
             <li>Open your App</li>
@@ -578,7 +578,7 @@ function resetHelpModal() {
   renderIssues(primaryIssues);
 }
 function openChat() {
-  alert("💬 Connecting you to Crypto.com Support...");
+  alert("💬 Connecting you to Support...");
 }
 
 // Initialize
