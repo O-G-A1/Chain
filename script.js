@@ -63,7 +63,7 @@ const mostRead = [
   "How to Set Up Your App 2FA?",
   "Cash Account - General Information",
   "How to Update Your Phone Number in the Onchain App",
-  "Onchain Send",
+  "How to Send Crypto",
 ];
 
 // Real-style Article Content
@@ -81,28 +81,178 @@ const articlesDB = {
     `,
 
   "Prepaid Card - Rewards & Benefits": `
-        <p>The Visa Card provides attractive rewards based on your stake level.</p>
-        <ul class="list-disc pl-6 my-4 space-y-2">
-            <li>Up to 8% CRO cashback on spending</li>
-            <li>Free Spotify, Netflix, and Amazon Prime rebates (higher tiers)</li>
-            <li>Airport Lounge Access</li>
-            <li>Metal cards with higher tiers</li>
-        </ul>
+        <p class="mb-4">The Visa Card provides attractive rewards based on your selected card tier and staking level. Eligible users may enjoy cashback rewards on purchases, subscription rebates, airport lounge access, and other exclusive benefits depending on their card level.</p>
+
+        <p class="mb-4">Rewards are credited according to the platform's terms and may vary by region or promotional campaign. Certain benefits may require an active staking period or continued account eligibility.</p>
+
+        <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">Review the latest card benefits available in your region before applying or upgrading your card tier.</p>
     `,
 
   "How to Set Up Your App 2FA?": `
-        <p>Two-Factor Authentication (2FA) adds an extra layer of security to your account.</p>
-        <ol class="list-decimal pl-6 my-4 space-y-3">
-            <li>Open your App</li>
-            <li>Go to Settings → Security</li>
-            <li>Enable 2FA and follow the instructions</li>
-            <li>Save your backup codes in a safe place</li>
-        </ol>
+        <p class="mb-4">Two-Factor Authentication (2FA) adds an extra layer of protection to your account by requiring a verification code whenever you sign in or perform sensitive actions. Enabling 2FA significantly reduces the risk of unauthorized access.</p>
+
+        <p class="mb-4">To enable 2FA, open the application, navigate to the Security section within Settings, and follow the prompts to connect your preferred authenticator application. Once activated, securely store your recovery or backup codes in a safe location.</p>
+
+        <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">Never share your authentication codes or backup codes with anyone claiming to represent customer support.</p>
     `,
 
+  "Cash Account - General Information": `
+        <p class="mb-4">The Cash Account allows you to securely manage supported fiat currencies for deposits, withdrawals, and funding eligible platform services. Once your account has been verified, you can transfer funds using the banking methods available in your region.</p>
+
+        <p class="mb-4">Deposit and withdrawal processing times may vary depending on your financial institution and local banking network. To help avoid delays, ensure that your banking information matches your verified account details and that all submitted information is accurate.</p>
+
+        <p class="mb-4">For security and regulatory compliance, withdrawals are generally processed only to bank accounts registered under the verified account holder's name. Additional verification may be required for certain transactions.</p>
+
+        <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">Never share your online banking credentials or one-time verification codes with anyone.</p>
+    `,
+
+  "How to Update Your Phone Number in the Onchain App": `
+        <p class="mb-4">Keeping your phone number up to date ensures you continue receiving important security alerts, verification codes, and account notifications. Before requesting an update, make sure you have access to your registered email address and any required verification methods.</p>
+
+        <p class="mb-4">Open the application and navigate to the Account Settings or Security section. Select the option to update your phone number, complete the requested identity verification steps, and submit your new mobile number. Depending on your account status, additional verification may be required before the update is approved.</p>
+
+        <p class="mb-4">If you no longer have access to your previous phone number, you may be asked to complete an identity verification process before the change can be completed.</p>
+
+        <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">Always ensure your contact information remains accurate to help protect your account against unauthorized access.</p>
+    `,
+
+  "How to Send Crypto": `
+        <p class="mb-4">Before sending cryptocurrency, carefully verify the recipient's wallet address and ensure that the selected blockchain network matches the receiving platform. Transactions sent using an incorrect network or invalid wallet address may be irreversible and could result in permanent loss of funds.</p>
+
+        <p class="mb-4">To send crypto, open your wallet, select the digital asset you wish to transfer, enter or paste the recipient's wallet address, specify the amount to send, and review all transaction details before confirming. If multiple blockchain networks are available, choose the one supported by the receiving wallet.</p>
+
+        <p class="mb-4">After confirming the transaction, blockchain processing times will depend on network activity and the number of confirmations required by the receiving platform. Once broadcast to the blockchain, transactions generally cannot be cancelled or reversed.</p>
+
+        <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">When transferring funds to a new wallet for the first time, consider sending a small test transaction before transferring larger amounts.</p>
+    `,
+  "Onchain App": `
+    <p class="mb-4">
+        The Onchain App provides users with access to supported digital assets, account management tools, and wallet services in a secure environment. Through the application, users can buy, sell, transfer, and manage cryptocurrencies while monitoring balances, transaction history, and market activity in real time.
+    </p>
+
+    <p class="mb-4">
+        The application includes features such as crypto deposits and withdrawals, price tracking, account verification, security management, and portfolio monitoring. Certain features may vary depending on your country or region and are subject to applicable regulations.
+    </p>
+
+    <p class="mb-4">
+        To help protect your account, always keep the application updated to the latest version and enable available security features such as Two-Factor Authentication (2FA), biometric authentication, and email verification.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        Never install modified versions of the application or disclose your recovery credentials to anyone claiming to represent customer support.
+    </p>
+`,
+
+  "Onchain Exchange": `
+    <p class="mb-4">
+        The Onchain Exchange allows users to trade supported cryptocurrencies through a secure trading platform offering spot markets and other eligible trading services. Users can place market or limit orders, review order history, and monitor current market activity directly from their account dashboard.
+    </p>
+
+    <p class="mb-4">
+        Before trading, ensure your account has completed all required verification procedures and contains sufficient available balance. Trading fees, supported markets, and available services may differ depending on your jurisdiction and account status.
+    </p>
+
+    <p class="mb-4">
+        Always review your order details carefully before confirming a trade, as completed transactions generally cannot be reversed once executed.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        Enable account security features and regularly review your recent login activity to help protect your trading account.
+    </p>
+`,
+
+  "Onchain Prepaid Card": `
+    <p class="mb-4">
+        The Onchain Prepaid Card allows eligible users to spend supported digital assets wherever the card network is accepted. Once activated, the card can be managed directly through the application, where users can review transactions, monitor spending, and manage card settings.
+    </p>
+
+    <p class="mb-4">
+        Depending on your selected card tier and regional availability, additional benefits such as spending rewards, subscription rebates, or promotional offers may be available. Eligibility requirements and available benefits are subject to change.
+    </p>
+
+    <p class="mb-4">
+        If your card is lost or stolen, immediately freeze the card through the application and contact customer support to request a replacement if necessary.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        Regularly monitor your card activity and report any unauthorized transactions as soon as possible.
+    </p>
+`,
+
+  "Onchain Cash Account": `
+    <p class="mb-4">
+        The Onchain Cash Account enables users to securely manage supported fiat currencies for deposits, withdrawals, and funding eligible platform services. Bank transfer methods and supported currencies may vary depending on your region and verification status.
+    </p>
+
+    <p class="mb-4">
+        Deposits and withdrawals are processed according to the banking schedules of participating financial institutions. Processing times may differ depending on weekends, public holidays, or additional compliance reviews.
+    </p>
+
+    <p class="mb-4">
+        To avoid delays, ensure that all banking information matches the personal information associated with your verified account and that transfers originate from approved financial institutions where required.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        Never share your online banking credentials or one-time verification codes with anyone.
+    </p>
+`,
+
+  "KYC - Know Your Customer": `
+    <p class="mb-4">
+        Know Your Customer (KYC) verification is an important identity verification process that helps maintain platform security, comply with regulatory requirements, and protect users from fraud. Completing KYC may be required before accessing certain platform features.
+    </p>
+
+    <p class="mb-4">
+        During verification, you may be asked to provide government-issued identification, proof of address, or additional supporting documentation. Submitted information is reviewed securely, and processing times may vary depending on verification demand.
+    </p>
+
+    <p class="mb-4">
+        If additional information is required, you will receive a notification requesting further documentation before verification can be completed.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        Ensure that all submitted documents are valid, clearly visible, and match your registered account information.
+    </p>
+`,
+
+  Security: `
+    <p class="mb-4">
+        Protecting your account begins with maintaining strong security practices. Users are encouraged to create unique passwords, enable Two-Factor Authentication (2FA), and regularly review account activity to detect any unauthorized access.
+    </p>
+
+    <p class="mb-4">
+        Be cautious of phishing emails, fake websites, unsolicited messages, and individuals requesting sensitive account information. Official support representatives will never request your password, recovery phrase, private key, or authentication codes.
+    </p>
+
+    <p class="mb-4">
+        Keep your devices updated with the latest operating system and security patches, and avoid accessing your account through untrusted public networks whenever possible.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        If you suspect unauthorized activity, immediately secure your account by changing your password and contacting customer support.
+    </p>
+`,
+
+  Onchain: `
+    <p class="mb-4">
+        Onchain services provide users with the ability to securely manage supported blockchain assets through deposits, withdrawals, and wallet management features. Users can monitor balances, review transaction history, and access supported blockchain networks from a single interface.
+    </p>
+
+    <p class="mb-4">
+        Before initiating deposits or withdrawals, always verify that the selected blockchain network matches the receiving wallet. Transactions sent using an unsupported network may not be recoverable.
+    </p>
+
+    <p class="mb-4">
+        Wallet addresses should always be reviewed carefully before confirming any transfer. Once a blockchain transaction has been broadcast, it generally cannot be cancelled or reversed.
+    </p>
+
+    <p class="mt-6 text-sm bg-blue-50 p-4 rounded-2xl">
+        For additional security, perform a small test transaction when sending funds to a new wallet address for the first time.
+    </p>
+`,
   default: `
         <p>This article is from the official Help Center.</p>
-        <p class="mt-4">In the real Help Center, you would find step-by-step instructions, screenshots, and troubleshooting tips here.</p>
+        <p class="mt-4">You would find step-by-step instructions, screenshots, and troubleshooting tips here.</p>
     `,
 };
 
