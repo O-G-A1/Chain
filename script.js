@@ -59,11 +59,11 @@ const otherIssues = [
 
 const mostRead = [
   "How to choose a Network when Depositing/Withdrawing Crypto?",
-  "Crypto.com Prepaid Card - Rewards & Benefits",
-  "How to Set Up Your Crypto.com App 2FA?",
+  "Prepaid Card - Rewards & Benefits",
+  "How to Set Up Your App 2FA?",
   "Cash Account - General Information",
   "How to Update Your Phone Number in the Crypto.com App",
-  "Crypto.com Send",
+  "Onchainhub Send",
 ];
 
 // Real-style Article Content
@@ -81,7 +81,7 @@ const articlesDB = {
     `,
 
   "Crypto.com Prepaid Card - Rewards & Benefits": `
-        <p>The Crypto.com Visa Card provides attractive rewards based on your stake level.</p>
+        <p>The Visa Card provides attractive rewards based on your stake level.</p>
         <ul class="list-disc pl-6 my-4 space-y-2">
             <li>Up to 8% CRO cashback on spending</li>
             <li>Free Spotify, Netflix, and Amazon Prime rebates (higher tiers)</li>
@@ -93,7 +93,7 @@ const articlesDB = {
   "How to Set Up Your Crypto.com App 2FA?": `
         <p>Two-Factor Authentication (2FA) adds an extra layer of security to your account.</p>
         <ol class="list-decimal pl-6 my-4 space-y-3">
-            <li>Open the Crypto.com App</li>
+            <li>Open your App</li>
             <li>Go to Settings → Security</li>
             <li>Enable 2FA and follow the instructions</li>
             <li>Save your backup codes in a safe place</li>
@@ -101,7 +101,7 @@ const articlesDB = {
     `,
 
   default: `
-        <p>This article is from the official Crypto.com Help Center.</p>
+        <p>This article is from the official Help Center.</p>
         <p class="mt-4">In the real Help Center, you would find step-by-step instructions, screenshots, and troubleshooting tips here.</p>
     `,
 };
