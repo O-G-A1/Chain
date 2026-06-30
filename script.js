@@ -697,41 +697,46 @@ function resetHelpModal() {
   renderIssues(primaryIssues);
 }
 function openChat() {
-  const modal = document.getElementById("help-modal");
-  const body = document.getElementById("help-body");
-
-  body.innerHTML = `
-    <div class="text-center py-12">
-      <div class="text-5xl mb-5">👨‍💻</div>
-
-      <h2 class="text-2xl font-bold text-[#0A2540] mb-4">
-        Support Team Busy
-      </h2>
-
-      <p class="text-gray-600 text-lg leading-relaxed mb-8">
-        Our support team is actively engaged right now.<br>
-        Please use the <strong>"Get Instant Help"</strong> center for immediate assistance.
-      </p>
-
-      <div class="flex justify-center gap-4">
-        <button
-          onclick="closeHelpModal()"
-          class="px-6 py-3 border border-gray-300 rounded-2xl hover:bg-gray-100">
-          Close
-        </button>
-
-        <button
-          onclick="openHelpModal()"
-          class="px-6 py-3 bg-[#5E17EB] text-white rounded-2xl hover:bg-[#4C0FCE]">
-          Get Instant Help
-        </button>
-      </div>
-    </div>
-  `;
-
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
+  if (typeof Tawk_API !== "undefined") {
+    Tawk_API.maximize();
+  }
 }
+// function openChat() {
+//   const modal = document.getElementById("help-modal");
+//   const body = document.getElementById("help-body");
+
+//   body.innerHTML = `
+//     <div class="text-center py-12">
+//       <div class="text-5xl mb-5">👨‍💻</div>
+
+//       <h2 class="text-2xl font-bold text-[#0A2540] mb-4">
+//         Support Team Busy
+//       </h2>
+
+//       <p class="text-gray-600 text-lg leading-relaxed mb-8">
+//         Our support team is actively engaged right now.<br>
+//         Please use the <strong>"Get Instant Help"</strong> center for immediate assistance.
+//       </p>
+
+//       <div class="flex justify-center gap-4">
+//         <button
+//           onclick="closeHelpModal()"
+//           class="px-6 py-3 border border-gray-300 rounded-2xl hover:bg-gray-100">
+//           Close
+//         </button>
+
+//         <button
+//           onclick="openHelpModal()"
+//           class="px-6 py-3 bg-[#5E17EB] text-white rounded-2xl hover:bg-[#4C0FCE]">
+//           Get Instant Help
+//         </button>
+//       </div>
+//     </div>
+//   `;
+
+//   modal.classList.remove("hidden");
+//   modal.classList.add("flex");
+// }
 
 // Initialize
 document.addEventListener("DOMContentLoaded", () => {
