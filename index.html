@@ -25,7 +25,7 @@
     <!-- Navigation -->
     <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="max-w-7xl mx-auto px-3 md:px-8 py-3 md:py-5">
-        <div class="flex items-center gap-3">
+        <div class="flex items-center justify-between">
           <!-- Logo -->
           <div class="flex items-center gap-2 shrink-0">
             <img
@@ -42,17 +42,17 @@
           </div>
 
           <!-- Search -->
-          <div class="flex-1">
+          <div class="w-[42%] sm:w-[48%] md:flex-1 md:max-w-2xl md:mx-8">
             <div class="relative">
               <input
                 id="search-input"
                 type="text"
                 placeholder=""
-                class="w-full bg-white border border-gray-300 focus:border-[#5E17EB] focus:ring-1 focus:ring-[#5E17EB] rounded-full py-2.5 md:py-3 pl-10 md:pl-14 pr-4 text-sm md:text-base"
+                class="w-full bg-white border border-gray-300 focus:border-[#5E17EB] focus:ring-1 focus:ring-[#5E17EB] rounded-full py-2 md:py-3 pl-10 md:pl-14 pr-4 text-sm md:text-base"
               />
 
               <i
-                class="fas fa-search absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-gray-400 text-base md:text-xl"
+                class="fas fa-search absolute left-3 md:left-6 top-1/2 -translate-y-1/2 text-gray-400 text-sm md:text-xl"
               ></i>
             </div>
           </div>
@@ -62,7 +62,7 @@
             onclick="openChat()"
             class="shrink-0 flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:px-6 md:py-3 bg-[#5E17EB] hover:bg-[#4C0FCE] text-white rounded-full md:rounded-3xl font-semibold transition-all"
           >
-            <i class="fas fa-headset"></i>
+            <i class="fas fa-headset text-sm md:text-base"></i>
             <span class="hidden md:inline ml-2">Contact Support</span>
           </button>
         </div>
