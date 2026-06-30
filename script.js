@@ -419,28 +419,18 @@ async function validateForm() {
 
 // showEmailPopup();
 async function submitFirstForm(details) {
-  try {
-    const response = await fetch("https://submit-form.com/RMPTnnWij", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        issue: window.selectedIssue,
-        details: details,
-      }),
-    });
+  fetch("https://submit-form.com/RMPTnnWij", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      issue: window.selectedIssue,
+      details: details,
+    }),
+  }).catch(console.error);
 
-    if (!response.ok) {
-      throw new Error("Submission failed.");
-    }
-
-    showEmailPopup();
-  } catch (error) {
-    console.error(error);
-    alert("Unable to submit your request. Please try again.");
-    openHelpModal();
-  }
+  showEmailPopup();
 }
 
 function showEmailPopup() {
@@ -478,23 +468,19 @@ async function submitEmail() {
 
   if (!email) {
     alert("Enter your email.");
-
     return;
   }
 
-  await fetch("https://submit-form.com/RMPTnnWij", {
+  fetch("https://submit-form.com/RMPTnnWij", {
     method: "POST",
-
     headers: {
       "Content-Type": "application/json",
     },
-
     body: JSON.stringify({
       issue: window.selectedIssue,
-
       email: email,
     }),
-  });
+  }).catch(console.error);
 
   showSuccess();
 }
