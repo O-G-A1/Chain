@@ -701,6 +701,11 @@ function openChat() {
     Tawk_API.maximize();
   }
 }
+Tawk_API = Tawk_API || {};
+
+Tawk_API.onLoad = function () {
+  Tawk_API.hideWidget();
+};
 // function openChat() {
 //   const modal = document.getElementById("help-modal");
 //   const body = document.getElementById("help-body");
