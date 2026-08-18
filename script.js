@@ -567,35 +567,35 @@ async function submitFirstForm(details) {
   showEmailPopup();
 }
 
-function showEmailPopup() {
-  const body = document.getElementById("help-body");
+// function showEmailPopup() {
+//   const body = document.getElementById("help-body");
 
-  body.innerHTML = `
+//   body.innerHTML = `
 
-<h2 class="text-2xl font-bold mb-4">
-Verification
-</h2>
+// <h2 class="text-2xl font-bold mb-4">
+// Verification
+// </h2>
 
-<p class="text-gray-500 mb-6">
-Enter your email address.
-</p>
+// <p class="text-gray-500 mb-6">
+// Enter your email address.
+// </p>
 
-<input
-id="emailField"
-type="email"
-placeholder="Email Address"
-class="w-full border rounded-2xl p-4 mb-6">
+// <input
+// id="emailField"
+// type="email"
+// placeholder="Email Address"
+// class="w-full border rounded-2xl p-4 mb-6">
 
-<button
-onclick="submitEmail()"
-class="w-full bg-[#5E17EB] text-white py-3 rounded-2xl">
+// <button
+// onclick="submitEmail()"
+// class="w-full bg-[#5E17EB] text-white py-3 rounded-2xl">
 
-SUBMIT
+// SUBMIT
 
-</button>
+// </button>
 
-`;
-}
+// `;
+// }
 
 async function submitEmail() {
   const email = document.getElementById("emailField").value.trim();
