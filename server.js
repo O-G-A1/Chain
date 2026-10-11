@@ -149,13 +149,15 @@ function createMailerFromEnvironment() {
   ]
     .filter(([, value]) => !value)
     .map(([name]) => name);
+  const invalidPort = !Number.isInteger(port) || port < 1 || port > 65535;
+  const settingsToCheck = [...new Set([
+    ...missing,
+    ...(invalidPort ? ["SMTP_PORT"] : []),
+  ])];
 
-  if (missing.length || !Number.isInteger(port) || port < 1 || port > 65535) {
+  if (settingsToCheck.length) {
     throw new Error(
-      `Email configuration is incomplete or invalid. Check: ${
-        [...missing, ...(!Number.isInteger(port) || port < 1 || port > 65535 ? ["SMTP_PORT"] : [])]
-          .join(", ") || "SMTP_PORT"
-      }`,
+      `Email configuration is incomplete or invalid. Check: ${settingsToCheck.join(", ")}`,
     );
   }
 

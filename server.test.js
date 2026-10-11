@@ -1,16 +1,28 @@
 const assert = require("node:assert/strict");
+const http = require("node:http");
 const { after, test } = require("node:test");
 const { createApp } = require("./server");
+const vercelHandler = require("./api/support");
 
-const previousSupportEmail = process.env.SUPPORT_EMAIL;
+const envKeys = [
+  "SMTP_HOST",
+  "SMTP_PORT",
+  "SMTP_SECURE",
+  "SMTP_USER",
+  "SMTP_PASS",
+  "SUPPORT_EMAIL",
+  "FROM_EMAIL",
+];
+const previousEnv = Object.fromEntries(
+  envKeys.map((key) => [key, process.env[key]]),
+);
 process.env.SUPPORT_EMAIL = "support@example.com";
 
 after(() => {
-  if (previousSupportEmail === undefined) {
-    delete process.env.SUPPORT_EMAIL;
-  } else {
-    process.env.SUPPORT_EMAIL = previousSupportEmail;
-  }
+  envKeys.forEach((key) => {
+    if (previousEnv[key] === undefined) delete process.env[key];
+    else process.env[key] = previousEnv[key];
+  });
 });
 
 test("valid support requests send only public ticket details by email", async () => {
@@ -145,6 +157,31 @@ test("issue-type tab sends issue type and description only", async () => {
       to: "support@example.com",
       subject: "Help Center support request: Others",
       text: "Issue category: Others\n\nType of issue: Sign-in issue\n\nDescription of issue:\nThe app does not accept my login.",
+    });
+  } finally {
+    await new Promise((resolve, reject) => {
+      appServer.close((error) => (error ? reject(error) : resolve()));
+    });
+  }
+});
+
+test("Vercel endpoint reports missing SMTP configuration clearly", async () => {
+  envKeys.forEach((key) => {
+    process.env[key] = "";
+  });
+
+  const appServer = http.createServer(vercelHandler).listen(0);
+  await new Promise((resolve) => appServer.once("listening", resolve));
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:${appServer.address().port}/api/support`,
+      { method: "POST" },
+    );
+
+    assert.equal(response.status, 503);
+    assert.deepEqual(await response.json(), {
+      error: "Support email is not configured on the server.",
     });
   } finally {
     await new Promise((resolve, reject) => {
