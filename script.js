@@ -410,6 +410,32 @@ async function submitSupportRequest(event) {
     });
 
     if (!response.ok) {
+      if (response.status === 400) {
+        error.textContent = "Please check the information in the form and try again.";
+        error.classList.remove("hidden");
+        button.disabled = false;
+        button.textContent = "Send support request";
+        return;
+      }
+
+      if (response.status === 429) {
+        error.textContent =
+          "Too many requests were sent. Please wait a few minutes and try again.";
+        error.classList.remove("hidden");
+        button.disabled = false;
+        button.textContent = "Send support request";
+        return;
+      }
+
+      if (response.status === 503) {
+        error.textContent =
+          "The support email service is not configured yet. Please contact support another way.";
+        error.classList.remove("hidden");
+        button.disabled = false;
+        button.textContent = "Send support request";
+        return;
+      }
+
       throw new Error(`Support server returned HTTP ${response.status}`);
     }
 
@@ -417,7 +443,7 @@ async function submitSupportRequest(event) {
   } catch (submissionError) {
     console.error("Support request submission failed:", submissionError);
     error.textContent =
-      "We couldn't send your request. Please try again in a moment.";
+      "We couldn't deliver your request. Please try again later or contact support another way.";
     error.classList.remove("hidden");
     button.disabled = false;
     button.textContent = "Send support request";
