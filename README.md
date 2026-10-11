@@ -12,6 +12,15 @@
    for production.
 5. Run `npm start` and open `http://localhost:3000`.
 
+## Deploy on Vercel
+
+The `/api/support` endpoint is exposed as a Vercel Node.js function in
+`api/support.js`. In the Vercel project connected to this repository, add
+`SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `FROM_EMAIL`,
+and `SUPPORT_EMAIL` under **Settings > Environment Variables**. Add them to
+both Preview and Production environments as needed, then redeploy. Do not put
+SMTP credentials in GitHub files or browser code.
+
 The server sends support email through SMTP. Port 587 normally uses
 `SMTP_SECURE=false` (STARTTLS); port 465 normally uses `SMTP_SECURE=true`.
 The mail is sent to `SUPPORT_EMAIL`, with the submitter's address set as
